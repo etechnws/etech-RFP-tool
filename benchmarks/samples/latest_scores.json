@@ -1,0 +1,9 @@
+{
+  "grounding_citation_correctness": 1.0,
+  "answer_completeness": 0.9166666666666666,
+  "policy_compliance": 1.0,
+  "reviewer_edit_distance": 0.0,
+  "time_to_first_draft_seconds_median": 120.0,
+  "time_to_final_seconds_median": 405.0,
+  "samples": 6
+}

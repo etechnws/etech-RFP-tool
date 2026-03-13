@@ -1,0 +1,36 @@
+name: RFP Regression Gate
+
+on:
+  pull_request:
+    paths:
+      - "benchmarks/**"
+      - "scripts/**"
+      - "config/release_gates.json"
+      - "metrics/**"
+      - "rubric/**"
+  workflow_dispatch:
+
+jobs:
+  regression-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate benchmark scores
+        run: |
+          python scripts/score_rfp.py \
+            --benchmark benchmarks/historical_rfp/benchmark_set.jsonl \
+            --predictions benchmarks/samples/predictions_example.jsonl \
+            --output benchmarks/samples/latest_scores.json
+
+      - name: Enforce release gates
+        run: |
+          python scripts/check_regression.py \
+            --scores benchmarks/samples/latest_scores.json \
+            --gates config/release_gates.json
