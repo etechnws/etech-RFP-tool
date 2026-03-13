@@ -1,0 +1,10 @@
+{
+  "thresholds": {
+    "grounding_citation_correctness": 0.90,
+    "answer_completeness": 0.85,
+    "policy_compliance": 0.98,
+    "reviewer_edit_distance": 0.20,
+    "time_to_first_draft_seconds_median": 180,
+    "time_to_final_seconds_median": 600
+  }
+}
